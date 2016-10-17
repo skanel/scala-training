@@ -1,0 +1,36 @@
+------------scala day 3----------------
+Scala, as several other languages, makes the distinction between expressions and statements.
+
+I.Expression
+------------
+ scala> "this is one expression"
+res0: String = this is the first expression
+
+ scala> "is" + 1 + "expression"
+res1: String = this is the first expression
+
+Expression Blocks
+------------------
+
+You can group multiple expressions using {}, {} each cluster called 1 expression blocks.
+Example :
+ scala> val attempted: String = "Sok"; "my name is" + attempted
+attempted: String = sok
+res2: String = my name is  Sok
+
+scala> val val = {intro tried: String = "Sok"; "my name is" + attempted}
+intro: String = my name is  Sok
+You can use the Expression Block to group multiple lines of code:
+ scala> val intro = {
+           |  val myName : String = "Sok"
+           |  "my name is " + myName
+           | }
+intro: String = my name is Sok
+
+* Each Expression Block has its own variables exist only in the block and returns one value, and variable block child can call the parent block.
+ scala> val sumCalc = {val parent = 1;{val child = parent + 1;child}}
+sumCalc: Int = 2
+
+Self R&D : Side effect, pure function,match express
+
+------------------end------------
