@@ -1,0 +1,158 @@
+Function code is meant to be performed 1 1 block certain logic and can use this concept lai.Khai similar to other languages.
+Function in Scala can be described by two properties:
+- Named
+- Being 1 or more can be re-used expression.
+Function in scala bears many of Functional programming, but in this article I will explain Functional programming,
+ it will be your homework, finish this article you try Functional programming and learn to reconcile with my properties listed below.
+I - The way to declare the Function in Scala
+----------------------------------------------
+Input-less Function
+
+Syntax:
+ def <identifier> = <expression>
+ Similarly you declare one value or one variable, you see nothing else here? we have the keyword " def ".
+For example:
+ scala> def hiSona = "Hello Sona"
+hiSona: String
+scala> hiSona
+res0: String = Hello Sona
+ 1 way to declare one function you can not use one input that is open round marks empty () - Empty Parentheses.
+ I rewrite function on the Empty Parentheses:
+ scala> def hiSona2() = "Bonjour sona"
+hiSona2: ()String
+You see what the difference in the outcome, it also leads a representation of different uses:
+
+scala> hiSona2()
+res1: String = Bonjour sona
+scala> hiSona2
+res2: String =Bonjour sona
+scala> hiSona()
+<console>:12: error: not enough arguments for method apply: (index: Int)Char in class StringOps.
+Unspecified value parameter index.
+hiSona()
+               ^
+-----------------------------------------------------
+Function with a Return Type (function returns the fixed type)
+
+As you can see above, if you do not set the return type for the function will automatically calculate Scala and set for you,
+in fact you should set the style for the function you wrote, that it makes your code clearer and avoid many unwanted errors.
+Syntax:
+ def <identifier>: <type> = <expression>
+Example :
+ scala> def checkString : String = "this 1 String"
+checkString: String
+scala> def checkInt : Int = 100
+checkInt: Int
+----------------------------------------------------
+
+Full Definition 1 Function
+
+Syntax:
+ def <identifier>(<identifier>: <type>[, ... ]): <type> = <expression>
+Example :
+ scala> def sum2num(firstNum: Int , secondNum: Int) : Int = firstNum + secondNum
+sum2num: (firstNum: Int, secondNum: Int)Int
+scala> sum2num(2,3)
+res4: Int = 5
+Scala lets you call the function with the defined input with the previous name, I try to recall the order of input function on the reverse:
+ scala> sum2num(secondNum = 3,firstNum = 2)
+res5: Int = 5
+---------------------------------------------------
+Vararg Parameters
+
+Sometimes you define one function with the input of the same type and do not know the number, you agree Scala wrote as follows:
+ scala> def sumManyNum(nums: Int*): Int = {
+        | var sum = 0
+        | for (i <- nums) sum += i
+        | sum
+        | }
+sumManyNum: (nums: Int*)Int
+scala> sumManyNum(1,2,3)
+res6: Int = 6
+scala> sumManyNum(5,10,15,20)
+res7: Int = 50
+------------------------------------------------------
+Parameter Groups
+
+Also it is one way in scala define other variables, it is split into multiple parameter group
+ scala> def WhichOneGreater(firstNum: Int)(secondNum: Int) = if(firstNum > secondNum) firstNum else secondNum
+soNaoLon: (firstNum: Int)(secondNum: Int)Int
+scala> WhichOneGreater(3)(1)
+res8: Int = 3
+scala> WhichOneGreater(3)(5)
+res9: Int = 5
+-----------------------------------------------------
+Function Invocation with Expression Blocks
+
+The normal way, you will prepare trc input and then call the function.
+For example, here I am writing a function test 1 number is even or odd:
+ scala> def evensOrOdd(x : Int) {
+         |    if (x % 2 == 0) println("sess number")
+         |    else println("kou number")
+         | }
+evensOrOdd: (x: Int)Unit
+Now I will add two numbers and check if any of them is even or odd:
+ scala> val sumAny2Num = 5 + 9
+sumAny2Num: Int = 14
+scala> evensOrOdd (sumAny2Num)
+sess number
+With Scala everything one step simpler:
+ scala> evensOrOdd { 5 + 9}
+sess number
+This example is too simple compared to the usefulness of this feature, first I just want to introduce you to so.
+----------------------------------------------
+Function’s Type Parameters
+
+Sometimes you need to write a function that return type 1 is active, for example,
+ you write one function that returns a great style with the type of input.
+Option 1: You use Any Any root of all because the data in Scala, as we have said in article 1
+ scala> def anyThings(x : Any) : Any = x
+anyThings: (x: Any)Any
+scala> val soInt: Int = anyThings(1)
+<console>:11: error: type mismatch;
+ found   : Any
+ required: Int
+       val soInt: Int = anyThings(1)
+                                 ^
+Here's one not return anythings 1 through function of Int because it has turned into the type anythings Any
+
+Method 2: Scala gives you one solution to this situation:
+ scala> def anyThings[A](x : A) : A = x
+anyThings: [A](x: A)A
+scala> val soInt: Int = anyThings(1)
+soInt: Int = 1
+-----------------------------------------------
+Nested Functions
+
+Scala allows you to function in the function declaration:
+ scala> def findMaxIn3Nums (NumI: Int, NumII: Int, NumIII: Int) = {
+            | def findMaxIn2Nums (NumI: Int, NumII: In) = if (NumI> NumII) NumI else NumII
+            | findMaxIn2Nums (NumI findMaxIn2Nums (NumII, soIII))
+            | }
+findMaxIn3Nums: (NumI: Int, NumII: Int, NumIII: Int) Int
+scale> findMaxIn3Nums (5,15,10)
+res1: Int = 15
+-----------------------------------------------
+Procedures
+
+Procedures are functions that do not return a value at all, or rather it returns 1 Unit
+ scala> def procedure(status: String) = println("sona is "+ status)
+procedure: (name: String)Unit
+scala> procedure("beautiful")
+sona is beautiful
+---------------------------------------------
+II - Methods and Operators
+
+When starting to become familiar with Scala you will encounter one of "function" as rounded 1 Double check numbers ending 1 string:
+ scala> val numDouble : Double = 1.5645
+numDouble: Double = 1.5645
+scala> numDouble.round
+res6: Long = 2
+ scala> val myName: String = "Dang"
+tried: String = Dang
+scala> myName.endsWith ( "ng")
+res7: Boolean = true
+As we learn in the first post, all data in the scala are one class,
+and the other functions that you encounter is actually the method of that class.
+Each data type defined as 1 class and have methods go the corresponding attached.
+There are multiple methods for each data type and class of the exercises you'll learn a lot of that method before we come to the next post on
