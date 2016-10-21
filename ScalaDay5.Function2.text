@@ -1,0 +1,189 @@
+One of the core of functional programming is the function should be the fisrt-class, you can simply understand it not simply be defined and invoked (translated from Vietnamese to this difficult process) which is used as 1 part of the programming language as one data type.
+Vậy first-class function :
+- Can be treated as other kinds of data type.
+- Can be created from one literal.
+- Stored value like 1, 1 or 1 variable data structure.
+- Used as one parameter to another function 1.
+So here we have one kind of function that uses another function as one parameter, it called Higher-order functions.
+Scala specific so what we do.
+----------------------------------------
+I. Data type Function and Values
+
+The data type of the function is described by one pair includes one input type and output type groups, they are connected by one arrow (=>), look at this structure does not need to make any party to explain to you how input and output side is.
+Syntax:
+ ([<type>, . . .]) => <type>
+ For example SvayKun function (x: Int): Int = x * 2 of type (Int) => Int:
+ Scala> Def SvayKun (x: Int): Int = x * 2
+nhanDoi: (x: Int) Int
+ Scala> SvayKun (5)
+res0: Int = 10
+ scala> val firstClass: (Int) => Int = SvayKun
+firstClass: Int => Int = <function1>
+ scala> firstClass(5)
+res1: Int = 10
+- Firstclass in the example above is one of value, but unlike other value, it is invoke.
+- Invoke invoke firstclass well as general svaykun 1 we obtain results.
+- 1 function of value can be assigned to one data type value as 1 .
+=> you see anything or not, one value can change the value :)
+
+****Sometimes you will have problems with many variables and functions we bring a lot of style and assigning disappear over time, we have 1 another way to assign 1 to 1 variable function.
+Syntax:
+ val <identifier> = <function name> _
+We recreate a new one and try to assign function by both 2 ways:
+
+ scalaAs you know, function in scala can be used as one parameter for one function, and one function using another function as one parameter called Higher order functions.
+      Try a few examples, I will porch amount in the account of 1 someone, defined as RIEL current account but the other he only Dollar:
+
+       scala> def dollar2Riel(number: Int): Int = number * 4200
+      dollar2Rail: (number: Int)Int
+
+       scala> def Doluy(luyDollar : Int, f : (Int) => Int){
+                   | println(f(luyDollar)+" RIEL")
+                   | }
+      Doluy: (luyDollar: Int, f: Int => Int)Unit
+       scala> Banluy (5, dollar2Riel)
+      20000 Riel> def max(a: Int, b: Int) = if (a > b) a else b
+ max: (a: Int, b: Int)Int
+ scala> val maximize: (Int, Int) => Int = max
+ maximize: (Int, Int) => Int = <function2>
+
+ scala> val maximize = max _
+maximize: (Int, Int) => Int = <function2>
+ scala> maximize(50, 30)
+res3: Int = 50
+-----------------------------------------------
+
+II - Higher-Order Functions
+
+
+--------------------------------------------------
+
+III - Function Literals
+
+Before yet function literal definition of us discuss the following example:
+ scala> val maximize = (a: Int, b: Int) => if (a > b) a else b
+maximize: (Int, Int) => Int = <function2>
+As you can see I initialized 1 value and assign it one function but I do not predefined function that,
+ here we call   (a: int, b: Int) => if (a> b) a else b  is 1 function literal.
+So one literal function has the following characteristics:
+
+ - syntax:
+ ([<identifier>: <type>, ... ]) => <expression>
+ - No identifier (Anonymous functions)
+--------------------------------------------------
+
+IV - By-Name Parameters
+
+At this point you already know in Scala 1 function can be used as the first parameter, and it is one type of function parameters,
+ as in the example above we pass on one function and recall this function in the main function,
+ sometimes you only care the last of the value this function returns, not important how it runs.
+With the above:
+ scala> def SvayKun (x : Int => Int) : Int = x * 2
+<console>:10: error: value * is not a member of Int => Int
+def SvayKun (x : Int => Int) : Int = x * 2
+                                                        ^
+You will find it is reported that x is 1, and it can not function multiplied 2.
+We declared and told the system that we only care about the output:
+ Scala> Def SvayKun (x: => Int): Int = x * 2
+SvayKun: (x: => Int) Int
+ Scala> SvayKun (4)
+res20: Int = 8
+
+More specifically, the same view the following example:
+ scala> def functionParam(i : Int) = {println("message from a function : functionParam");i}
+functionParam: (i: Int)Int
+ Scala> Def SvayKun (x: => Int) = {
+        | println ( "Message leadership function: SvayKun" + x)
+        | x * 2
+        | }
+SvayKun: (x: => Int) Int
+ Scala> SvayKun (functionParam (7))
+Message Send function: functionParam
+Message Send function: SvayKun7
+Message Send function: functionParam
+res0: Int = 14
+Every time we call x from the functionParam SvayKun function was calculated.
+-------------------------------------------
+
+V - Placeholder Syntax
+
+From the upper part 1 of the article and before you have also known placeholder (_), today I see the utility of the rest of it.
+In summary placeholder can be used for 2 purposes:
+ - Change the function type to be able to clearly define
+ - Replace the parameter used for no more than 1 times.
+Perhaps still a bit confusing, do the same view examples:
+ Scala> Val SvayKun7: Int => Int = 2 * _
+SvayKun7: Int => Int = <function1>
+ Scala> SvayKun7 (5)
+res7: Int = 10
+Here we assign a function literal to variable SvayKun 1 structure <Int => Int = _ * 2>, placeholder here (_) replacing the entire input of function because as you can see in the structure had only one input Int type and Scala passed in order to understand it _ instead of input.
+Another example, one function to display account balances from dollars to RIEL 1 above, try again with a placeholder:
+ scala> Doluy (5, _ * 42000)
+20000 RIEL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I command in 1 function literal with defined structure is one input and output type is 1 of Int Int, placeholder (_) is understood as the input of the function.
+Try it with one other case that we have a lot of input, the input sequence is important, suppose you need to check the look of the first 3 numbers is greater than the other two numbers added together:
+ scala> def tripleOp(a: Int, b: Int, c: Int, f: (Int, Int, Int) => Boolean) = f(a,b,c)
+tripleOp: (a: Int, b: Int, c: Int, f: (Int, Int, Int) => Boolean)Boolean
+ scala> tripleOp(93, 92, 14, _ > _ + _)
+res9: Boolean = false
+Can write simply this:
+ scala> def kiemTra3So: (Int,Int,Int) => Boolean = _ > _ + _
+kiemTra3So: (Int, Int, Int) => Boolean
+ scala> kiemTra3So(93, 92, 14)
+res10: Boolean = false
+Partially Applied Functions
+Suppose you have one function check has to be a multiple of the other does not:
+ scala> def boiSo(x: Int, y: Int) : Boolean = y % x == 0
+boiSo: (x: Int, y: Int)Boolean
+ scala> boiSo(2,13)
+res16: Boolean = false
+Now you need to check one number is a multiple of 3 was going or not, simply call us boiSo (3, so_can_kt), you see the number 3 repetitive and do not want to write over and over again:
+ - Write one new function
+ - Leveraging the strengths of the placeholder (_) and function type
+try 2:
+ scala> val chiaHetCho3 = boiSo(3, _ : Int)
+chiaHetCho3: Int => Boolean = <function1>
+ scala> chiaHetCho3(21)
+res17: Boolean = true
+ scala> chiaHetCho3(20)
+res18: Boolean = false
+Or you can also use the group parameter:
+ scala> def boiSo(x: Int)(y: Int) : Boolean = y % x == 0
+boiSo: (x: Int)(y: Int)Boolean
+ scala> val chiaHetCho3 = boiSo(3) _
+chiaHetCho3: Int => Boolean = <function1>
+ scala> chiaHetCho3(20)
+res19: Boolean = false
+Today too long already, see you next to the Scala Collections - List, Map and Set

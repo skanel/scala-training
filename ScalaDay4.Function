@@ -1,4 +1,4 @@
-Function code is meant to be performed 1 1 block certain logic and can use this concept lai.Khai similar to other languages.
+Function code is meant to be performed 1 1 block certain logic and can use this concept . similar to other languages.
 Function in Scala can be described by two properties:
 - Named
 - Being 1 or more can be re-used expression.
@@ -84,7 +84,7 @@ res9: Int = 5
 -----------------------------------------------------
 Function Invocation with Expression Blocks
 
-The normal way, you will prepare trc input and then call the function.
+The normal way, you will prepare before input and then call the function.
 For example, here I am writing a function test 1 number is even or odd:
  scala> def evensOrOdd(x : Int) {
          |    if (x % 2 == 0) println("sess number")
@@ -108,18 +108,18 @@ Sometimes you need to write a function that return type 1 is active, for example
 Option 1: You use Any Any root of all because the data in Scala, as we have said in article 1
  scala> def anyThings(x : Any) : Any = x
 anyThings: (x: Any)Any
-scala> val soInt: Int = anyThings(1)
+scala> val numInt: Int = anyThings(1)
 <console>:11: error: type mismatch;
  found   : Any
  required: Int
-       val soInt: Int = anyThings(1)
+       val numInt: Int = anyThings(1)
                                  ^
 Here's one not return anythings 1 through function of Int because it has turned into the type anythings Any
 
 Method 2: Scala gives you one solution to this situation:
  scala> def anyThings[A](x : A) : A = x
 anyThings: [A](x: A)A
-scala> val soInt: Int = anyThings(1)
+scala> val numInt: Int = anyThings(1)
 soInt: Int = 1
 -----------------------------------------------
 Nested Functions
@@ -127,7 +127,7 @@ Nested Functions
 Scala allows you to function in the function declaration:
  scala> def findMaxIn3Nums (NumI: Int, NumII: Int, NumIII: Int) = {
             | def findMaxIn2Nums (NumI: Int, NumII: In) = if (NumI> NumII) NumI else NumII
-            | findMaxIn2Nums (NumI findMaxIn2Nums (NumII, soIII))
+            | findMaxIn2Nums (NumI findMaxIn2Nums (NumII, NumIII))
             | }
 findMaxIn3Nums: (NumI: Int, NumII: Int, NumIII: Int) Int
 scale> findMaxIn3Nums (5,15,10)

@@ -1,0 +1,16 @@
+20
+
+scala> def product(f:Int=>Int)(a:Int,b:Int): Int =
+	| if (a>b) 1 else f(a) * product(f)(a+1,b)
+product: (f: Int => Int)(a: Int, b: Int)Int
+// squares product, (3 * 3) * (4 * 4)
+scala> product(x=>x*x)(3,4)
+res1: Int = 144
+
+
+scala> def fact(n: Int) = product(x => x)(1, n)
+fact: (n: Int)Int
+
+scala> fact(5)
+res2: Int = 120
+
